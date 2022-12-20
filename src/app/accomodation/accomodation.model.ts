@@ -9,7 +9,6 @@ export class Accomodation {
     }
     pricePerBed(): number {
         return this.price/this.beds;
-    }
-        
+    } 
 }
     
