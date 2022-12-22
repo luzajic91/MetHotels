@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Accomodation } from './accomodation/accomodation.model';
+import { Preporuka } from './preporuka/preporuka.model';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +11,26 @@ import { Accomodation } from './accomodation/accomodation.model';
 export class AppComponent {
 
   accomodations: Accomodation[];
+  preporuke: Preporuka[];
   title = 'MetHotels';
+
+  dispCont: boolean[] = [false, false, false];
+
+  displayCont(val: number): boolean {
+    console.log("primljeno");
+    this.dispCont[val] = !this.dispCont[val];
+    return false;
+  }
 
   constructor() {
     this.accomodations = [
       new Accomodation(1, 100),
       new Accomodation(2, 200),
       new Accomodation(3, 300)
+    ];
+    this.preporuke = [
+      new Preporuka('Bed&Breakfast', 'Dorucak uz nocenje'),
+      new Preporuka('Tourist special', 'Ukljucena tura svih najbitnijih turistickih zamki')
     ];
   }
 
@@ -25,4 +39,5 @@ export class AppComponent {
     this.accomodations.push(new Accomodation(parseInt(beds.value), parseInt(price.value)));
     return false;
   }
+
 }

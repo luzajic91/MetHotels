@@ -1,3 +1,4 @@
+<app-navbarcomponent (display)="displayCont($event)"></app-navbarcomponent>
 <form class="ui large form segment">
     <h3 class="ui header">Add an accomodation</h3>
     <div class="field">
@@ -12,7 +13,17 @@
         Submit accomodations
     </button>
 </form>
-<div class="ui grid posts">
-    <app-accomodation *ngFor="let accomodation of accomodations" [accomodation]="accomodation">
-    </app-accomodation>
+<div *ngIf="dispCont[0]">
+    <div class="ui grid posts">
+        <app-accomodation *ngFor="let accomodation of accomodations" [accomodation]="accomodation">
+        </app-accomodation>
+    </div>
+</div>
+<div *ngIf="dispCont[1]">
+    <div class="ui grid posts">
+        <app-preporuka *ngFor="let preporuka of preporuke" [preporuka]="preporuka"></app-preporuka>
+    </div>
+</div>
+<div *ngIf="dispCont[2]">
+    <app-kontakt></app-kontakt>
 </div>

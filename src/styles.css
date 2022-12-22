@@ -47,3 +47,10 @@ ul.ui.list li:before {
   width: 100%;
 }
 
+.ui.positive.button, .ui.positive.buttons .button {
+    background-color: #5c21ba!important;
+    color: #FFF;
+    text-shadow: none;
+    background-image: none;
+}
+
