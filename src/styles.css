@@ -54,3 +54,11 @@ ul.ui.list li:before {
     background-image: none;
 }
 
+input.ng-invalid.ng-touched.ng-dirty {
+  border: red 2px solid;
+}
+
+input:focus {
+  background-color: yellow;
+}
+

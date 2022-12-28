@@ -7,6 +7,7 @@ import { AccomodationComponent } from './accomodation/accomodation.component';
 import { NavbarcomponentComponent } from './navbarcomponent/navbarcomponent.component';
 import { PreporukaComponent } from './preporuka/preporuka.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { KontaktComponent } from './kontakt/kontakt.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

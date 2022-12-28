@@ -1,16 +1,25 @@
 <app-navbarcomponent (display)="displayCont($event)"></app-navbarcomponent>
-<form class="ui large form segment">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="ui large form segment" [class.error]="!myForm.valid">
     <h3 class="ui header">Add an accomodation</h3>
     <div class="field">
         <label for="beds">Beds:</label>
-        <input name="beds" #newbeds>
+        <input name="beds" #newbeds formControlName="bedsInput">
+        <div *ngIf="!myForm.controls['bedsInput'].valid">Unos nije validan</div>
     </div>
     <div class="field">
         <label for="price">price:</label>
-        <input name="price" #newprice>
+        <input name="price" #newprice formControlName="priceInput">
+        <div *ngIf="!myForm.controls['priceInput'].valid">Unos nije validan</div>
     </div>
-    <button (click)="addRoom(newbeds, newprice)" class="ui positive right floated button">
-        Submit accomodations
+    <div>
+        <li>
+            <input type="checkbox" name="minibar" formControlName="minibar">
+            <label for="minibar">Minibar</label> 
+        </li>
+        <div *ngIf="myForm.controls['minibar'].value">Price will be increased by 50%!!</div>
+    </div>
+    <button type="submit" class="ui positive right floated button">
+        Submit
     </button>
 </form>
 <div *ngIf="dispCont[0]">
