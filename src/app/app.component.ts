@@ -4,15 +4,6 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { Accomodation } from './accomodation/accomodation.model';
 import { Preporuka } from './preporuka/preporuka.model';
 
-function customValidator(control: FormControl): { [s: string]: boolean } {
-  //if (/\d/.test(control.value)) {
-  if (control.value.length > 4) {
-    return {duzeJeOdCetiri: true};
-  } else {
-    return {kraceJeOdCetiri: true};
-  }
-}
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -48,6 +39,13 @@ export class AppComponent implements OnInit {
       new Preporuka('Bed & Breakfast', 'Dorucak uz nocenje'),
       new Preporuka('Tourist special', 'Ukljucena tura svih najbitnijih turistickih zamki')
     ];
+
+    // this.myForm.valueChanges.subscribe(
+    //   (form: any) => {
+    //     //if (form.controls['priceInput'].value)
+    //     console.log(form);
+    //   }
+    // )
   }
 
   onSubmit(value: any): boolean {
@@ -70,6 +68,13 @@ export class AppComponent implements OnInit {
       priceInput: new FormControl('', [Validators.required, this.customValidator3]),
       minibar: new FormControl()
     });
+    this.myForm.valueChanges.subscribe(
+      (form: any) => {
+        if (this.myForm.controls['priceInput'].value < 99999) {
+          console.log("uneta vrednost je"+this.myForm.controls['priceInput'].value);
+        }
+      }
+    )
   }
 
   customValidator2(control: FormControl) {
