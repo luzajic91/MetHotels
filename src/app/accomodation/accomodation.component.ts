@@ -1,4 +1,5 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { RoomService } from '../services/room.service';
 import { Accomodation } from './accomodation.model';
 
 @Component({
@@ -15,13 +16,15 @@ export class AccomodationComponent implements OnInit {
   votes: number;
   title: string;
   link: string;
+  getPrice: number;
 
-  constructor() {
-    this.accomodation = new Accomodation(
-      1, 100
-    );
+  constructor(private roomService: RoomService) {
+    this.roomService = roomService;
+    this.accomodation = new Accomodation(1,1);
+    this.getPrice = this.roomService.getPrice(this.accomodation.nights, this.accomodation.price);
   }
-
+  
   ngOnInit(): void {
+
   }
 }

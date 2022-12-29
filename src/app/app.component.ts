@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Accomodation } from './accomodation/accomodation.model';
 import { Preporuka } from './preporuka/preporuka.model';
+import { RoomService } from './services/room.service';
 
 @Component({
   selector: 'app-root',
@@ -28,50 +29,44 @@ export class AppComponent implements OnInit {
     return false;
   }
 
-  constructor(fb: FormBuilder) {
+  constructor(private roomService: RoomService) {
 
     this.accomodations = [
-      new Accomodation(1, 100),
-      new Accomodation(2, 200),
-      new Accomodation(3, 300)
+      new Accomodation(1, 10),
+      new Accomodation(2, 20),
+      new Accomodation(3, 30)
     ];
     this.preporuke = [
       new Preporuka('Bed & Breakfast', 'Dorucak uz nocenje'),
       new Preporuka('Tourist special', 'Ukljucena tura svih najbitnijih turistickih zamki')
     ];
 
-    // this.myForm.valueChanges.subscribe(
-    //   (form: any) => {
-    //     //if (form.controls['priceInput'].value)
-    //     console.log(form);
-    //   }
-    // )
   }
 
-  onSubmit(value: any): boolean {
+  onSubmit(value: any) {
 
     if (this.myForm.valid) {
-      this.accomodations.push(new Accomodation(value.bedsInput, value.priceInput, value.minibar));
-      console.log("accomodations done, price is "+value.priceInput);
-      return false;
+      this.accomodations.push(new Accomodation(value.bedsInput, value.nightsInput, value.minibar));
+      console.log("accomodations done, nights is "+value.nightsInput);
+      this.myForm.reset();
     }
-    console.log(this.myForm.controls['priceInput'].valid);
+    console.log(this.myForm.controls['nightsInput'].valid);
     console.log(this.myForm.controls['bedsInput'].valid);
     console.log(this.myForm.controls['minibar'].value);
     console.log(this.myForm);
-    return false;
   }
 
   ngOnInit() {
     this.myForm = new FormGroup({
       bedsInput: new FormControl('', [Validators.required, this.customValidator2]),
-      priceInput: new FormControl('', [Validators.required, this.customValidator3]),
+      nightsInput: new FormControl('', [Validators.required, this.customValidator3]),
       minibar: new FormControl()
     });
+
     this.myForm.valueChanges.subscribe(
-      (form: any) => {
-        if (this.myForm.controls['priceInput'].value < 99999) {
-          console.log("uneta vrednost je"+this.myForm.controls['priceInput'].value);
+      () => {
+        if (this.myForm.controls['nightsInput'].value < 99999) {
+          console.log("uneta vrednost je "+this.myForm.controls['nightsInput'].value);
         }
       }
     )
@@ -86,8 +81,8 @@ export class AppComponent implements OnInit {
   }
 
   customValidator3(control: FormControl) {
-    if (control.value < 100) {
-      return {"price cant be lower than 100": true};
+    if (control.value > 100) {
+      return {"nights cant be higher than 100": true};
     } else {
       return null;
     }

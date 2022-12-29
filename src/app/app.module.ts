@@ -8,6 +8,7 @@ import { NavbarcomponentComponent } from './navbarcomponent/navbarcomponent.comp
 import { PreporukaComponent } from './preporuka/preporuka.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RoomService } from './services/room.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [RoomService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

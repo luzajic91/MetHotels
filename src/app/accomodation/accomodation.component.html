@@ -9,13 +9,18 @@
     </div>
 </div>
     <div class="twelve wide column">
-        <a class="ui large header">
-            {{accomodation.price}}
-        </a>
         <div class="label">
-            Price per bed:
+            total number of nights:
+        </div>
+        <a class="ui large header">
+            {{accomodation.nights}}
+        </a>
+      
+        
+        <div class="label">
+            Price total:
         </div>
         <div class="meta">
-            {{accomodation.pricePerBed()}}
+            {{accomodation.totalPrice}}
         </div>
     </div>
