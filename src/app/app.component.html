@@ -4,19 +4,19 @@
     <div class="field">
         <label for="beds">Beds:</label>
         <input name="beds" #newbeds formControlName="bedsInput">
-        <div *ngIf="!myForm.controls['bedsInput'].valid">Unos nije validan</div>
+        <div *ngIf="!myForm.controls['bedsInput'].valid">Invalid input</div>
     </div>
     <div class="field">
         <label for="nights">nights:</label>
         <input name="nights" #newnights formControlName="nightsInput">
-        <div *ngIf="!myForm.controls['nightsInput'].valid">Unos nije validan</div>
+        <div *ngIf="!myForm.controls['nightsInput'].valid">Invalid input</div>
     </div>
     <div>
         <li>
             <input type="checkbox" name="minibar" formControlName="minibar">
             <label for="minibar">Minibar</label> 
         </li>
-        <div *ngIf="myForm.controls['minibar'].value">nights will be increased by 50%!!</div>
+        <div *ngIf="myForm.controls['minibar'].value">price will be increased by 50%</div>
     </div>
     <button type="submit" class="ui positive right floated button">
         Submit
@@ -24,7 +24,7 @@
 </form>
 <div *ngIf="dispCont[0]">
     <div class="ui grid posts">
-        <app-accomodation *ngFor="let accomodation of accomodations" [accomodation]="accomodation">
+        <app-accomodation *ngFor="let accomodation of accomodations" [accomodation]="accomodation" (onDeleteAccomodation)="deleteAccomodation(accomodation)" (onEditAccomodation)="editAccomodation(accomodation)">
         </app-accomodation>
     </div>
 </div>

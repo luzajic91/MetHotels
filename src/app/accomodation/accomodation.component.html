@@ -1,3 +1,4 @@
+
 <div class="four wide column center aligned votes">
     <div class="ui statistic">
         <div class="value">
@@ -23,4 +24,7 @@
         <div class="meta">
             {{accomodation.totalPrice}}
         </div>
+        <button class="ui positive right floated button" (click)="onDelete(accomodation)">Delete</button>
+        <button class="ui positive left floated button" (click)="onEdit(accomodation)">{{btnVal}}</button>
     </div>
+

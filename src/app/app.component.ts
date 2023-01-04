@@ -4,6 +4,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { Accomodation } from './accomodation/accomodation.model';
 import { Preporuka } from './preporuka/preporuka.model';
 import { RoomService } from './services/room.service';
+import { AccomodationService } from './services/accomodation.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,7 @@ export class AppComponent implements OnInit {
   ru: AbstractControl;
   rutri: AbstractControl;
 
+
   dispCont: boolean[] = [false, false, false];
 
   displayCont(val: number): boolean {
@@ -29,13 +32,8 @@ export class AppComponent implements OnInit {
     return false;
   }
 
-  constructor(private roomService: RoomService) {
+  constructor(private accomodationService: AccomodationService) {
 
-    this.accomodations = [
-      new Accomodation(1, 10),
-      new Accomodation(2, 20),
-      new Accomodation(3, 30)
-    ];
     this.preporuke = [
       new Preporuka('Bed & Breakfast', 'Dorucak uz nocenje'),
       new Preporuka('Tourist special', 'Ukljucena tura svih najbitnijih turistickih zamki')
@@ -46,14 +44,17 @@ export class AppComponent implements OnInit {
   onSubmit(value: any) {
 
     if (this.myForm.valid) {
-      this.accomodations.push(new Accomodation(value.bedsInput, value.nightsInput, value.minibar));
-      console.log("accomodations done, nights is "+value.nightsInput);
-      this.myForm.reset();
+      var id = Math.floor(Math.random() * 100) + 1
+      var ac = new Accomodation(id, value.bedsInput, value.nightsInput, value.minibar);
+      this.accomodations.push(ac);
+      this.accomodationService.addAccomodation(ac).subscribe((accomodation) => (this.accomodations.push(accomodation)));
+      //console.log("accomodations booked, number of nights are "+ac.beds, ac.nights, ac.minibar, ac.id);
+      //this.myForm.reset();
     }
     console.log(this.myForm.controls['nightsInput'].valid);
     console.log(this.myForm.controls['bedsInput'].valid);
     console.log(this.myForm.controls['minibar'].value);
-    console.log(this.myForm);
+    //console.log(this.myForm);
   }
 
   ngOnInit() {
@@ -70,6 +71,17 @@ export class AppComponent implements OnInit {
         }
       }
     )
+
+    this.accomodationService.getAccomodations().subscribe((accomodations) => (this.accomodations = accomodations));
+  }
+
+  deleteAccomodation(accomodation: Accomodation) {
+    console.log(accomodation.id);
+    this.accomodationService.deleteAccomodation(accomodation).subscribe(() => (this.accomodations = this.accomodations.filter(a => a.id !== accomodation.id)))
+  }
+
+  editAccomodation(accomodation: Accomodation) {
+    this.accomodationService.updateAccomodation(accomodation).subscribe();
   }
 
   customValidator2(control: FormControl) {
@@ -82,7 +94,7 @@ export class AppComponent implements OnInit {
 
   customValidator3(control: FormControl) {
     if (control.value > 100) {
-      return {"nights cant be higher than 100": true};
+      return {"number of nights cant be higher than 100": true};
     } else {
       return null;
     }

@@ -62,3 +62,8 @@ input:focus {
   background-color: yellow;
 }
 
+.accomodation.minibar {
+  border-left: 4px solid green;
+}
+
+

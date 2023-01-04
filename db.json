@@ -1,0 +1,36 @@
+{
+  "accomodations": [
+    {
+      "id": 3,
+      "beds": 4,
+      "price": 400,
+      "minibar": true,
+      "nights": 3,
+      "totalPrice": 1200
+    },
+    {
+      "id": 2,
+      "beds": 3,
+      "price": 300,
+      "minibar": true,
+      "nights": 3,
+      "totalPrice": 900
+    },
+    {
+      "id": 1,
+      "beds": 2,
+      "price": 200,
+      "minibar": false,
+      "nights": 3,
+      "totalPrice": 600
+    },
+    {
+      "id": 4,
+      "beds": 1,
+      "price": 100,
+      "minibar": false,
+      "nights": 3,
+      "totalPrice": 300
+    }
+  ]
+}

@@ -9,6 +9,8 @@ import { PreporukaComponent } from './preporuka/preporuka.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoomService } from './services/room.service';
+import { AccomodationService } from './services/accomodation.service';
+import { HttpClient, HttpClientModule, HttpHandler } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,10 @@ import { RoomService } from './services/room.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [RoomService],
+  providers: [RoomService, AccomodationService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
