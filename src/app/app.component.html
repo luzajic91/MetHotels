@@ -22,10 +22,18 @@
         Submit
     </button>
 </form>
-<div *ngIf="dispCont[0]">
+
+<router-outlet>
+</router-outlet>
+
+<!-- <app-accomodations></app-accomodations>
+<app-preporuke></app-preporuke>
+<app-kontakt></app-kontakt> -->
+
+<!-- <div *ngIf="dispCont[0]">
     <div class="ui grid posts">
         <app-accomodation *ngFor="let accomodation of accomodations" [accomodation]="accomodation" (onDeleteAccomodation)="deleteAccomodation(accomodation)" (onEditAccomodation)="editAccomodation(accomodation)">
-        </app-accomodation>
+        </app-accomodation>  
     </div>
 </div>
 <div *ngIf="dispCont[1]">
@@ -35,4 +43,4 @@
 </div>
 <div *ngIf="dispCont[2]">
     <app-kontakt></app-kontakt>
-</div>
+</div> -->

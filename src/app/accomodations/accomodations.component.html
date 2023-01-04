@@ -1,0 +1,4 @@
+<div class="ui grid posts">
+    <app-accomodation *ngFor="let accomodation of accomodations" [accomodation]="accomodation" (onDeleteAccomodation)="deleteAccomodation(accomodation)" (onEditAccomodation)="editAccomodation(accomodation)">
+    </app-accomodation>
+</div>

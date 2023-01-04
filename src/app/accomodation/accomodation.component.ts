@@ -24,8 +24,6 @@ export class AccomodationComponent implements OnInit {
 
   constructor(private roomService: RoomService) {
     this.roomService = roomService;
-    //this.accomodation = new Accomodation(1,1,1);
-    //this.getPrice = this.roomService.getPrice(this.accomodation.nights, this.accomodation.price);
   }
   
   ngOnInit(): void {

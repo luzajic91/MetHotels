@@ -23,14 +23,6 @@
       "minibar": false,
       "nights": 3,
       "totalPrice": 600
-    },
-    {
-      "id": 4,
-      "beds": 1,
-      "price": 100,
-      "minibar": false,
-      "nights": 3,
-      "totalPrice": 300
     }
   ]
 }
